@@ -426,7 +426,7 @@ switch handles.Device
     case 'Bacteria'
         fol = 'BacteriaMicrofluidicExperiments';
 end
-
+webPath='';
 switch char(java.lang.System.getProperty('user.name')) % Technically not required but just as a control to avoid other people overwitting things by accident
     case {'David'}
         webPath = ['C:\Users\',char(java.lang.System.getProperty('user.name')),'\Dropbox\',fol,'\',datenow,'_Microfluidics'];

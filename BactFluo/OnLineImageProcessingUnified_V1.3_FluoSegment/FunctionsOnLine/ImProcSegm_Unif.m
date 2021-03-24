@@ -32,16 +32,16 @@ try
 
 
 IJ=ij.IJ();
-% Segment cell images
-for di=1:length(CellDirs)
-    macro_path = [CellDirs{1,di},'\Segmentation'];
-    IJ.runMacroFile(java.lang.String(fullfile(macro_path,[ident,'-MacroSegmentationGFP.ijm'])));
-    IJ.runMacroFile(java.lang.String(fullfile(macro_path,[ident,'-MacroSegmentationRFP.ijm'])));
-end
-
 % Segment Background images
 switch Device
     case 'Yeast'
+        % Segment cell images
+        for di=1:length(CellDirs)
+            macro_path = [CellDirs{1,di},'\Segmentation'];
+            IJ.runMacroFile(java.lang.String(fullfile(macro_path,[ident,'-MacroSegmentation.ijm'])));
+        end
+
+
         if ~isempty(cutcorBACK{1,1})
             macro_pathb1 = [BackDirs{1,1},'\SegmentationOne'];
             IJ.runMacroFile(java.lang.String(fullfile(macro_pathb1,[ident,'-MacroSegmentationBackOne.ijm'])));
@@ -51,6 +51,13 @@ switch Device
             end
         end
     case 'Bacteria'
+        % Segment cell images
+        for di=1:length(CellDirs)
+            macro_path = [CellDirs{1,di},'\Segmentation'];
+            IJ.runMacroFile(java.lang.String(fullfile(macro_path,[ident,'-MacroSegmentationGFP.ijm'])));
+            IJ.runMacroFile(java.lang.String(fullfile(macro_path,[ident,'-MacroSegmentationRFP.ijm'])));
+        end
+
         for di=1:length(BackDirs)
             macro_path = [BackDirs{1,di},'\Segmentation'];
             IJ.runMacroFile(java.lang.String(fullfile(macro_path,[ident,'-MacroSegmentationGFP.ijm'])));
